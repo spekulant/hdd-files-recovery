@@ -1,0 +1,15 @@
+{
+    "lookFor": [
+        ".jpg",
+        ".jpeg",
+        ".png"
+    ],
+    "filterOut": [
+        "AppData",
+        "Windows",
+        "PerfLogs",
+        "Program Files",
+        "ProgramData",
+        "assets/images"
+    ]
+}
