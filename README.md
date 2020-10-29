@@ -1,8 +1,14 @@
 ### Simple tool for selectively copying files across volumes
 
-1. In `config.json` specify file extensions you're interested in (`.jpg`? `.pdf`? `.docx`?)
-2. Also in `config.json` specify files and directories you're not interested in (`\Windows`? `\Program Files`?)
-3. run `mkdir clone; ./hdd-files-recovery /Path/To/Volume/Directory`
+Recursively copy matching files from one location to another given a set of file extensions to 
+match against and paths that should be ignored. 
+(todo: pass files that are corrupted and block read operation)
+
+1. Adjust `config.json` file to your usecase/requirements:
+   1. In the `lookFor` list specify file extensions you're interested in (`.jpg`? `.pdf`? `.docx`?)
+   2. In the `filterOut` list specify files and directories you're not interested in (`\Windows`? `\Program Files`?)
+2. Create a `clone` directory for the files to be copied over to, you can simply execute `mkdir clone` command
+3. Execute the program `./hdd-files-recovery run /Path/To/Volume/Directory`
 
 sample usage:
 ```bash
@@ -35,13 +41,13 @@ The tool **converts all extensions to lowercase automatically**, so a file named
 
 #### TODO:
 
-- create the "clone" directory automatically
-- implement timeouts for fetching files, atm the tool freezes when it tries to fetch a corrupted file.
+- create the "clone" directory automatically or let the user specify a destination path
+- implement timeouts for fetching files, atm the tool freezes when it tries to fetch a corrupted file
 - implement more tests
 
 #### Tests
 
-You can run tests with `go test`, for now only the file filtering functions are tested
+You can run tests with `go test ./...`, for now only the file filtering functions are tested
 
 #### disclaimer
 
