@@ -26,12 +26,14 @@ var (
 			if pidFile != "" {
 				file, err := os.OpenFile(pidFile, os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0666)
 				if err != nil {
-					return fmt.Errorf("Could not create pid file: %s Error:%v", pidFile, err)
+					log.Error().Msgf("Could not create pid file: %s Error:%v", pidFile, err)
+					return err
 				}
 				defer file.Close()
 				_, err = fmt.Fprintf(file, "%d\n", os.Getpid())
 				if err != nil {
-					return fmt.Errorf("Could not create pid file: %s Error:%v", pidFile, err)
+					log.Error().Msgf("Could not create pid file: %s Error:%v", pidFile, err)
+					return err
 				}
 			}
 			return nil
